@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom";
+import LoginNavigation from "./login-nav.components";
 
 export default class Login extends Component {
     render() {
         return (
             <form>
+                <LoginNavigation />
                 <h3>Sign In</h3>
 
                 <div className="form-group">
@@ -26,6 +29,9 @@ export default class Login extends Component {
                 <button type="submit" className="btn btn-primary btn-block">Submit</button>
                 <p className="forgot-password text-right">
                     Forgot <a href="forgot">password?</a>
+                </p>
+                <p className="forgot-password text-center">
+                    <Link to="/home"> Bypass Login </Link>
                 </p>
             </form>
         );

@@ -7,6 +7,7 @@ import Login from "./components/login.component";
 import SignUp from "./components/signup.component";
 import Home from "./components/home.component";
 import LoginNavigation from "./components/home.component";
+import TicTacToeGame from "./components/tictactoe/game.js";
 
 function App() {
   return (<Router>
@@ -20,6 +21,7 @@ function App() {
             <Route path="/sign-in" component={Login} />
             <Route path="/sign-up" component={SignUp} />
             <Route path="/home" exact component={() => <Home />} />
+            <Route path="/tictactoe" exact component={() => <TicTacToeGame />} />
           </Switch>
         </div>
       </div>
@@ -28,21 +30,3 @@ function App() {
 }
 
 export default App;
-
-/**
- *  <nav className="navbar navbar-expand-lg navbar-light fixed-top">
-        <div className="container">
-          <Link className="navbar-brand" to={"/sign-in"}>Selvel7i</Link>
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link className="nav-link" to={"/sign-in"}>Login</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
- */

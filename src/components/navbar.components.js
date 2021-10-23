@@ -10,6 +10,9 @@ export default class Navigation extends Component {
       <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
+            <Link className="nav-link" to={"/calendar"}>Calendar</Link>
+          </li>
+          <li className="nav-item">
             <Link className="nav-link" to={"/home"}>Home</Link>
           </li>
           <li className="nav-item">

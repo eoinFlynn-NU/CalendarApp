@@ -7,7 +7,7 @@ function Home() {
       <Navigation />
       <p>
         Hello! This is our calendar website. Calendar coming
-        soon... <br></br>
+        soon...
         In the mean time, please play a game of Tic Tac Toe!
       </p>
     </div>

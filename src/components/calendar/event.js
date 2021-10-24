@@ -16,8 +16,8 @@ export default class Event extends Component {
     render() {
       return (
         <div className="event">
-            <h1> props.name </h1>
-            <p>event placeholder</p>
+            <h4> {this.props.name} </h4>
+            <p>event placeholder text</p>
         </div>
 
       )

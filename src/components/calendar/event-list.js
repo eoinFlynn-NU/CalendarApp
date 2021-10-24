@@ -10,6 +10,11 @@ export default class EventList extends Component {
         };
       }
 
+    addEvent() {
+    
+        return null;
+    }
+
     render() {
         const data = this.state.events;
         return (
@@ -25,19 +30,11 @@ export default class EventList extends Component {
                 })}</div>
                 <button className="addEvent"
                 //need component for adding events
-                onClick={addEvent()}>
+                onClick={() => this.addEvent()}>
                     Add Event (Under construction)
                 </button>
             </div>
             
         );
     }
-}
-
-
-//need to store as array of names and stuff to start
-//make a renderEvent thing that creates an event with the given data.
-function addEvent() {
-    
-    return null;
 }

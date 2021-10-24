@@ -10,6 +10,19 @@ export default class EventList extends Component {
         };
       }
 
+    addEvent() {
+        const events = this.state.events.slice();
+        //needs to link to seperate add page, set vars to values gotten from page
+        let name = "added event";
+        let start = "x:xx";
+        let end = "x:xx";
+        this.setState({
+            events : events.concat([{"name":name, 
+            "start":start, "end":end}]),
+          });
+        return null;
+    }
+
     render() {
         const data = this.state.events;
         return (
@@ -25,19 +38,11 @@ export default class EventList extends Component {
                 })}</div>
                 <button className="addEvent"
                 //need component for adding events
-                onClick={addEvent()}>
+                onClick={() => this.addEvent()}>
                     Add Event (Under construction)
                 </button>
             </div>
             
         );
     }
-}
-
-
-//need to store as array of names and stuff to start
-//make a renderEvent thing that creates an event with the given data.
-function addEvent() {
-    
-    return null;
 }

@@ -11,7 +11,10 @@ export default class EventList extends Component {
       }
 
     addEvent() {
-    
+        const events = this.state.events.slice();
+        this.setState({
+            events : events.concat([{"name":"test2", "start":"5:00", "end":"6:05"}]),
+          });
         return null;
     }
 

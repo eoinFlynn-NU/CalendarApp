@@ -4,10 +4,15 @@ import Event from "./event.js";
 class EventList extends Component {
     constructor(props) {
         super(props);
-        this.state = {
+        this.state = JSON.parse(window.localStorage.getItem('calendarState')) || {
             events: [{"name":"test1", "start":"9:00", "end":"9:15"}
             ,{"name":"test2", "start":"5:00", "end":"6:05"}],
         };
+      }
+
+      setState(state) {
+        window.localStorage.setItem('calendarState', JSON.stringify(state));
+        super.setState(state);
       }
 
     addEvent() {

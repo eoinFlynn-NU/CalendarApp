@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import './event.css';
 
 
-export default class Event extends Component {
+class Event extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,3 +24,4 @@ export default class Event extends Component {
       )
     }
   }
+  export default Event;

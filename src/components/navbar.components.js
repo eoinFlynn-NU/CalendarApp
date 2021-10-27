@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import '../App.css';
 
-export default class Navigation extends Component {
-  render() {
+function Navigation() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light fixed-top">
     <div className="container">
@@ -19,7 +19,7 @@ export default class Navigation extends Component {
             <Link className="nav-link" to={"/tictactoe"}>TicTacToe</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to={"/"}>Log out</Link>
+            <Link className="nav-link" to={"/settings"}>Settings</Link>
           </li>
         </ul>
       </div>
@@ -27,4 +27,26 @@ export default class Navigation extends Component {
   </nav>
     )
   }
-}
+
+// function Navbar() {
+//   const navStyle = {color: 'black'};
+
+//   return(
+//     <nav>
+//       <h3>
+//         <ul className={'nav-links'}>
+//           <Link style={navStyle} to='/home'>
+//             <li>Home </li>
+//           </Link>
+//           <Link style={navStyle} to='/calendar'>
+//             <li>Calendar </li>
+//           </Link>
+//           <Link style={navStyle} to='/tictactoe'>
+//             <li>Tic-Tac-Toe </li>
+//           </Link>
+//         </ul>
+//       </h3>
+//     </nav>
+//   )
+// }
+export default Navigation;

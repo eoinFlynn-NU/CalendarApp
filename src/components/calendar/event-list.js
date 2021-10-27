@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Event from "./event.js";
 
-export default class EventList extends Component {
+class EventList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -9,6 +9,19 @@ export default class EventList extends Component {
             ,{"name":"test2", "start":"5:00", "end":"6:05"}],
         };
       }
+
+    addEvent() {
+        const events = this.state.events.slice();
+        //needs to link to seperate add page, set vars to values gotten from page
+        let name = "added event";
+        let start = "x:xx";
+        let end = "x:xx";
+        this.setState({
+            events : events.concat([{"name":name, 
+            "start":start, "end":end}]),
+          });
+        return null;
+    }
 
     render() {
         const data = this.state.events;
@@ -25,7 +38,7 @@ export default class EventList extends Component {
                 })}</div>
                 <button className="addEvent"
                 //need component for adding events
-                onClick={addEvent()}>
+                onClick={() => this.addEvent()}>
                     Add Event (Under construction)
                 </button>
             </div>
@@ -34,10 +47,4 @@ export default class EventList extends Component {
     }
 }
 
-
-//need to store as array of names and stuff to start
-//make a renderEvent thing that creates an event with the given data.
-function addEvent() {
-    
-    return null;
-}
+export default EventList;

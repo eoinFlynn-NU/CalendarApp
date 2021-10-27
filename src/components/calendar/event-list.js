@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Event from "./event.js";
 
-export default class EventList extends Component {
+class EventList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -29,3 +29,5 @@ export default class EventList extends Component {
         );
     }
 }
+
+export default EventList;

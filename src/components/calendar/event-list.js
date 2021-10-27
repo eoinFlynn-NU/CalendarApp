@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import Event from "./event.js";
+import './event-list.css';
+
 
 class EventList extends Component {
     constructor(props) {
         super(props);
         this.state = JSON.parse(window.localStorage.getItem('calendarState')) || {
-            events: [{"name":"test1", "start":"9:00", "end":"9:15"}
-            ,{"name":"test2", "start":"5:00", "end":"6:05"}],
+            events: [{"name":"test1", "start":"9:00", "end":"9:15", "number":1}
+            ,{"name":"test2", "start":"5:00", "end":"6:05","number":2}],
+            removeMode: false,
+            eventCount: 3,
         };
       }
 
@@ -25,30 +29,47 @@ class EventList extends Component {
 
     addEvent() {
         const events = this.state.events.slice();
+        const eventCount = this.state.eventCount;
         //needs to link to seperate add page, set vars to values gotten from page
-        let name = "added event";
+        let name = "Event (Test)";
         let start = "x:xx";
         let end = "x:xx";
         this.setState({
             events : events.concat([{"name":name, 
-            "start":start, "end":end}]),
+            "start":start, "end":end, "number":eventCount}]),
+            eventCount : eventCount + 1,
           });
-        return null;
     }
 
     render() {
         const data = this.state.events;
-        return (
-            
-            <div className="EventList">
+        const removeMode = this.state.removeMode;
 
+        const removeThing = () => this.removeEvent();
+        
+        return (
+            <div className="EventList">
                 <p>List of your events:</p>
                 <div>{data.map(function(d, idx){
-                    return (<Event key={idx}
-                        name={d.name}
-                        start={d.start}
-                        end={d.end} />)
+                    return (<div class="event-container">
+                        <Event key={idx}
+                            name={d.name}
+                            start={d.start}
+                            end={d.end}/>
+                        <button className="removeEvent"
+                            //need way for user to choose which event
+                            onClick={removeThing}>
+                            Remove Event
+                        </button>
+                        </div>
+                    )
                 })}</div>
+
+                        <button className="removeEvent"
+                            //need way for user to choose which event
+                            onClick={() => this.removeEvent()}>
+                            Remove Event
+                        </button>
 
                 <button className="addEvent"
                 //need component for adding events
@@ -56,11 +77,7 @@ class EventList extends Component {
                     Add Event (Under construction)
                 </button>
 
-                <button className="removeEvent"
-                //need way for user to choose which event
-                onClick={() => this.removeEvent()}>
-                    Remove Event (For testing)
-                </button>
+                
             </div>
             
         );

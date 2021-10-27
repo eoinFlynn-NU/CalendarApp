@@ -12,6 +12,8 @@ import Home from "./components/home.component";
 import LoginNavigation from "./components/home.component";
 import TicTacToeGame from "./components/tictactoe/game.js";
 import EventList from "./components/calendar/event-list.js";
+import Settings from './components/settings/settings.js';
+
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
@@ -75,6 +77,7 @@ function App() {
             <Route path="/home" exact component={() => <Home />} />
             <Route path="/tictactoe" exact component={() => <TicTacToeGame />} />
             <Route path="/calendar" component={EventList} />
+            <Route path="/settings" component={Settings} />
           </Switch>
         </div>
       </div>

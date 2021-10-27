@@ -49,13 +49,18 @@ import './game.css';
   export default class Game extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {
+      this.state = this.state = JSON.parse(window.localStorage.getItem('ticTacState')) || {
         history: [{
           squares: Array(9).fill(null),
         }],
         xIsNext:true,
         stepNumber: 0,
       };
+    }
+
+    setState(state) {
+      window.localStorage.setItem('ticTacState', JSON.stringify(state));
+      super.setState(state);
     }
 
     handleClick(i) {

@@ -1,0 +1,13 @@
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.event {
+  float: center;
+  width: 33.33%;
+  padding: 10px;
+  word-break: keep-all;
+}
+
+.event-text {
+  float: left;
+  text-align: center;
+  word-break: keep-all;
+}

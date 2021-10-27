@@ -1,0 +1,10 @@
+.event-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  height: 150px;
+  /*max-width: 80px;*/ /* Turn on to see the wrap */
+}

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import './event.css';
 
-
-class Event extends Component {
+//duplicate of event, needs to be fixed...
+export default class AddEvent extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,16 +11,14 @@ class Event extends Component {
         };
       }
 
+      //We need to figure out how to list all events, not just an example
     render() {
       return (
         <div className="event">
             <h4> {this.props.name} </h4>
-            <p> Start: {this.props.start} </p>
-            <p> End: {this.props.end} </p>
             <p>event placeholder text</p>
         </div>
 
       )
     }
   }
-  export default Event;

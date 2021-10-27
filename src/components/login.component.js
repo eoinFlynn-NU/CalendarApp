@@ -27,9 +27,6 @@ export default class Login extends Component {
                 </div>
 
                 <button type="submit" className="btn btn-primary btn-block">Submit</button>
-                <p className="forgot-password text-right">
-                    Forgot <a href="forgot">password?</a>
-                </p>
                 <p className="forgot-password text-center">
                     <Link to="/home"> Bypass Login </Link>
                 </p>

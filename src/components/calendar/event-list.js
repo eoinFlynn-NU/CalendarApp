@@ -15,6 +15,14 @@ class EventList extends Component {
         super.setState(state);
       }
 
+    //removes the bottom-most event (temporary solution)
+    removeEvent() {
+        const events = this.state.events.slice(0, this.state.events.length - 1);
+        this.setState({
+            events : events,
+        })
+    }
+
     addEvent() {
         const events = this.state.events.slice();
         //needs to link to seperate add page, set vars to values gotten from page
@@ -41,10 +49,17 @@ class EventList extends Component {
                         start={d.start}
                         end={d.end} />)
                 })}</div>
+
                 <button className="addEvent"
                 //need component for adding events
                 onClick={() => this.addEvent()}>
                     Add Event (Under construction)
+                </button>
+
+                <button className="removeEvent"
+                //need way for user to choose which event
+                onClick={() => this.removeEvent()}>
+                    Remove Event (For testing)
                 </button>
             </div>
             

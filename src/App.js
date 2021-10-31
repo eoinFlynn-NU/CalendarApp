@@ -12,8 +12,6 @@ import Home from "./components/home.component";
 import LoginNavigation from "./components/home.component";
 import TicTacToeGame from "./components/tictactoe/game.js";
 import EventList from "./components/calendar/event-list.js";
-import Settings from './components/settings/settings.js';
-
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
@@ -25,46 +23,47 @@ firebase.initializeApp({
   messagingSenderId: "386652212300",
   appId: "1:386652212300:web:c2bdf1ea8542e071b3b8e9",
   measurementId: "G-L9153QEHFW"
-})
+});
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
-// function Calendar() {
-//   const [user] = useAuthState(auth);
+function Calendar() {
+  const [user] = useAuthState(auth);
 
-//   return (
-//     <div className="App">
+  return (
+    <div className="App">
 
-//       <header>
+      <header>
 
-//       </header>
+      </header>
 
-//       <section>
-//         {user ? <App /> : <SignIn />}
-//       </section>
-//     </div>
-//   )
-// }
+      <section>
+        {/* Checks if the user is signed in or not and changes  */}
+        {user ? <App /> : <SignIn />}
+      </section>
+    </div>
+  )
+}
 
-// function SignIn() {
-//   const googleSignIn = () => {
-//     const provider = new firebase.auth.GoogleAuthProvider();
-//     auth.signInWithPopup(provider);
-//   }
-//   return (
-//     <button onClick={googleSignIn}>Sign In With Google</button>
-//   )
-// }
+function SignIn() {
+  const googleSignIn = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider);
+  }
+  return (
+    <button onClick={googleSignIn}>Sign In With Google</button>
+  )
+}
 
 // function SignOut() {
 //   return auth.currentUser && (
-//     <button onClick={() => auth.signOut()}>Sign Out</button>
+    
 //   )
 // }
 
 function App() {
-  return (<Router>
+  return auth.currentUser && (<Router>
     <div className="App">
     <LoginNavigation />
 
@@ -77,12 +76,13 @@ function App() {
             <Route path="/home" exact component={() => <Home />} />
             <Route path="/tictactoe" exact component={() => <TicTacToeGame />} />
             <Route path="/calendar" component={EventList} />
-            <Route path="/settings" component={Settings} />
           </Switch>
         </div>
       </div>
-    </div></Router>
+    </div>
+    <button onClick={() => auth.signOut()}>Sign Out</button>
+    </Router>
   );
 }
 
-export default App;
+export default Calendar;

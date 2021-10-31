@@ -15,7 +15,6 @@ import Settings from './components/settings/settings.js';
 import Messages from './components/messages/messages.js';
 import Schedule from './components/schedule/schedule.js';
 
-
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 

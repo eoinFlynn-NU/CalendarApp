@@ -10,9 +10,11 @@ import Login from "./components/login.component";
 import SignUp from "./components/signup.component";
 import Home from "./components/home.component";
 import LoginNavigation from "./components/home.component";
-import TicTacToeGame from "./components/tictactoe/game.js";
 import EventList from "./components/calendar/event-list.js";
 import Settings from './components/settings/settings.js';
+import Messages from './components/messages/messages.js';
+import Schedule from './components/schedule/schedule.js';
+
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
@@ -75,9 +77,10 @@ function App() {
             <Route path="/sign-in" component={Login} />
             <Route path="/sign-up" component={SignUp} />
             <Route path="/home" exact component={() => <Home />} />
-            <Route path="/tictactoe" exact component={() => <TicTacToeGame />} />
             <Route path="/calendar" component={EventList} />
             <Route path="/settings" component={Settings} />
+            <Route path="/messages" component={Messages} />
+            <Route path="/schedule" component={Schedule} />
           </Switch>
         </div>
       </div>

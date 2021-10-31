@@ -16,10 +16,13 @@ function Navigation() {
             <Link className="nav-link" to={"/home"}>Home</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to={"/tictactoe"}>TicTacToe</Link>
+            <Link className="nav-link" to={"/settings"}>Settings</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to={"/settings"}>Settings</Link>
+            <Link className="nav-link" to={"/messages"}>Messages</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to={"/schedule"}>Schedule</Link>
           </li>
         </ul>
       </div>

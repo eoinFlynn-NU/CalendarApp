@@ -30,38 +30,38 @@ firebase.initializeApp({
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
-// function Calendar() {
-//   const [user] = useAuthState(auth);
+function Calendar() {
+  const [user] = useAuthState(auth);
 
-//   return (
-//     <div className="App">
+  return (
+    <div className="App">
 
-//       <header>
+      <header>
 
-//       </header>
+      </header>
 
-//       <section>
-//         {user ? <App /> : <SignIn />}
-//       </section>
-//     </div>
-//   )
-// }
+      <section>
+        {user ? <App /> : <SignIn />}
+      </section>
+    </div>
+  )
+}
 
-// function SignIn() {
-//   const googleSignIn = () => {
-//     const provider = new firebase.auth.GoogleAuthProvider();
-//     auth.signInWithPopup(provider);
-//   }
-//   return (
-//     <button onClick={googleSignIn}>Sign In With Google</button>
-//   )
-// }
+function SignIn() {
+  const googleSignIn = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider);
+  }
+  return (
+    <button onClick={googleSignIn}>Sign In With Google</button>
+  )
+}
 
-// function SignOut() {
-//   return auth.currentUser && (
-//     <button onClick={() => auth.signOut()}>Sign Out</button>
-//   )
-// }
+function SignOut() {
+  return auth.currenpmntUser && (
+    <button onClick={() => auth.signOut()}>Sign Out</button>
+  )
+}
 
 function App() {
   return (<Router>
@@ -71,13 +71,11 @@ function App() {
       <div className="auth-wrapper">
         <div className="auth-inner">
           <Switch>
-            <Route exact path='/' component={Login} />
-            <Route path="/sign-in" component={Login} />
-            <Route path="/sign-up" component={SignUp} />
+            <Route exact path='/' exact component={() => <Home />} />
             <Route path="/home" exact component={() => <Home />} />
             <Route path="/tictactoe" exact component={() => <TicTacToeGame />} />
             <Route path="/calendar" component={EventList} />
-            <Route path="/settings" component={Settings} />
+            <Route path="/settings" component={Settings(auth)} />
           </Switch>
         </div>
       </div>
@@ -85,4 +83,4 @@ function App() {
   );
 }
 
-export default App;
+export default Calendar;

@@ -7,8 +7,6 @@ import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
-import firebase from "firebase";
-import { getDatabase, ref, set } from "firebase/database";
 
 
 const locales = {
@@ -42,15 +40,6 @@ const events = [
 ];
 
 
-function writeUserData(userId, name, email, imageUrl) {
-    const db = getDatabase();
-    set(ref(db, 'users/' + userId), {
-      username: name,
-      email: email,
-      profile_picture : imageUrl
-    });
-  }
-
 function Schedule() {
     const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
     const [allEvents, setAllEvents] = useState(events);
@@ -58,7 +47,6 @@ function Schedule() {
     function handleAddEvent() {
         setAllEvents([...allEvents, newEvent]);
 
-        writeUserData(firebase.auth.userId, "namename", firebase.auth.email, "https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg");
     }
 
     return (

@@ -2,9 +2,7 @@ import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
+
 
 import Home from "./components/home.component";
 import LoginNavigation from "./components/home.component";
@@ -13,10 +11,16 @@ import Settings from './components/settings/settings.js';
 import Messages from './components/messages/messages.js';
 import Schedule from './components/schedule/schedule.js';
 
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-firebase.initializeApp({
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
   apiKey: "AIzaSyCQtN2Doz8HsKXF7o8E1sS07GrRtG1Wa44",
   authDomain: "freetime-calendar.firebaseapp.com",
   projectId: "freetime-calendar",
@@ -24,10 +28,11 @@ firebase.initializeApp({
   messagingSenderId: "386652212300",
   appId: "1:386652212300:web:c2bdf1ea8542e071b3b8e9",
   measurementId: "G-L9153QEHFW"
-});
+};
 
-const auth = firebase.auth();
-const firestore = firebase.firestore();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
 
 function Calendar() {
   const [user] = useAuthState(auth);

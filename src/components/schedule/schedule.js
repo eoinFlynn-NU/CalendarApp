@@ -20,22 +20,6 @@ const localizer = dateFnsLocalizer({
 });
 
 const events = [
-    {
-        title: "Big Meeting",
-        allDay: true,
-        start: new Date(2021, 6, 0),
-        end: new Date(2021, 6, 0),
-    },
-    {
-        title: "Vacation",
-        start: new Date(2021, 6, 7),
-        end: new Date(2021, 6, 10),
-    },
-    {
-        title: "Conference",
-        start: new Date(2021, 6, 20),
-        end: new Date(2021, 6, 23),
-    },
 ];
 
 function Schedule() {
@@ -43,7 +27,13 @@ function Schedule() {
     const [allEvents, setAllEvents] = useState(events);
 
     function handleAddEvent() {
-        setAllEvents([...allEvents, newEvent]);
+        setAllEvents([...allEvents, newEvent])
+        console.log(allEvents);
+    }
+
+    function handleDeleteEvent() {
+        let pos = allEvents.indexOf(newEvent);
+        console.log(pos);
     }
 
     return (
@@ -56,6 +46,9 @@ function Schedule() {
                 <DatePicker placeholderText="End Date" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
                 <button stlye={{ marginTop: "10px" }} onClick={handleAddEvent}>
                     Add Event
+                </button>
+                <button stlye={{ marginTop: "10px" }} onClick={handleDeleteEvent}>
+                    Delete Event
                 </button>
             </div>
             <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" style={{ height: 500, margin: "50px" }} />

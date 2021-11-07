@@ -85,7 +85,6 @@ function App() {
         </div>
       </div>
     </div>
-    <button onClick={() => auth.signOut()}>Sign Out</button>
     </Router>
   );
 }

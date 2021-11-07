@@ -33,8 +33,17 @@ function Schedule() {
     }
 
     function handleDeleteEvent() {
-        let pos = allEvents.indexOf(newEvent);
-        console.log(pos);
+        allEvents.forEach(event => {
+            if(sameEvent) {
+                allEvents.splice(allEvents.indexOf(event), 1);
+        }})
+        setAllEvents([...allEvents])
+    }
+
+    function sameEvent(x, y) {
+        return(
+            x.title == y.title && x.start == y.start && x.end == y.end
+        )
     }
 
     return (

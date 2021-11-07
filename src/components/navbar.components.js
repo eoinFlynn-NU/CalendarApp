@@ -9,9 +9,9 @@ function Navigation() {
       <Link className="navbar-brand" to={"/home"}>Selvel7i</Link>
       <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link className="nav-link" to={"/calendar"}>Calendar</Link>
-          </li>
+          </li> */}
           <li className="nav-item">
             <Link className="nav-link" to={"/home"}>Home</Link>
           </li>

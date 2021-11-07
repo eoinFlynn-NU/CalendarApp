@@ -6,13 +6,12 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-import Login from "./components/login.component";
-import SignUp from "./components/signup.component";
 import Home from "./components/home.component";
 import LoginNavigation from "./components/home.component";
-import TicTacToeGame from "./components/tictactoe/game.js";
 import EventList from "./components/calendar/event-list.js";
 import Settings from './components/settings/settings.js';
+import Messages from './components/messages/messages.js';
+import Schedule from './components/schedule/schedule.js';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
@@ -25,7 +24,7 @@ firebase.initializeApp({
   messagingSenderId: "386652212300",
   appId: "1:386652212300:web:c2bdf1ea8542e071b3b8e9",
   measurementId: "G-L9153QEHFW"
-})
+});
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
@@ -41,6 +40,7 @@ function Calendar() {
       </header>
 
       <section>
+        {/* Checks if the user is signed in or not and changes  */}
         {user ? <App /> : <SignIn />}
       </section>
     </div>
@@ -57,14 +57,14 @@ function SignIn() {
   )
 }
 
-function SignOut() {
-  return auth.currenpmntUser && (
-    <button onClick={() => auth.signOut()}>Sign Out</button>
-  )
-}
+// function SignOut() {
+//   return auth.currentUser && (
+    
+//   )
+// }
 
 function App() {
-  return (<Router>
+  return auth.currentUser && (<Router>
     <div className="App">
     <LoginNavigation />
 
@@ -72,14 +72,19 @@ function App() {
         <div className="auth-inner">
           <Switch>
             <Route exact path='/' exact component={() => <Home />} />
+            {/* <Route path="/sign-in" component={Login} />
+            <Route path="/sign-up" component={SignUp} /> */}
             <Route path="/home" exact component={() => <Home />} />
-            <Route path="/tictactoe" exact component={() => <TicTacToeGame />} />
             <Route path="/calendar" component={EventList} />
-            <Route path="/settings" component={Settings(auth)} />
+            <Route path="/settings" component={Settings} />
+            <Route path="/messages" component={Messages} />
+            <Route path="/schedule" component={Schedule} />
           </Switch>
         </div>
       </div>
-    </div></Router>
+    </div>
+    <button onClick={() => auth.signOut()}>Sign Out</button>
+    </Router>
   );
 }
 

@@ -1,6 +1,5 @@
 import firebase from "firebase";
 import React from "react";
-// import Navigation from "../navbar.components";
 
 
 function Settings(auth) {

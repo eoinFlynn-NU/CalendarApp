@@ -1,9 +1,15 @@
 import React, {useState} from "react";
 import "../messages/messages.css";
+import firebase from 'firebase';
+import 'firebase/firestore';
+
+import {useCollectionData } from 'react-firebase-hooks/firestore';
 
 function Messages() {
     const [data, setData] = useState(null);
     const [print, setPrint] = useState(false);
+
+    const firestore = firebase.firestore();
     
 
     function getData(val) {

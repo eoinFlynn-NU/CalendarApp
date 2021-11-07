@@ -14,7 +14,9 @@ import Schedule from './components/schedule/schedule.js';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
+
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -34,28 +36,71 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 
+const provider = new GoogleAuthProvider();
+
+const auth = getAuth();
+
+
 function Calendar() {
-  const [user] = useAuthState(auth);
+  console.log("calendar");
+  const user = auth.currentUser;
 
-  return (
-    <div className="App">
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    return (<div className="App">
 
-      <header>
+    <header>
 
-      </header>
+    </header>
 
-      <section>
-        {/* Checks if the user is signed in or not and changes  */}
-        {user ? <App /> : <SignIn />}
-      </section>
-    </div>
-  )
+    <section>
+      {/* Checks if the user is signed in or not and changes  */}
+      <App />
+    </section>
+  </div>);
+  } else {
+    // No user is signed in.
+    return (<div className="App">
+
+    <header>
+
+    </header>
+
+    <section>
+      {/* Checks if the user is signed in or not and changes  */}
+      <SignIn />
+    </section>
+  </div>);
+  }
 }
 
 function SignIn() {
+  console.log("signin");
+
+  const user = null;
+
   const googleSignIn = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
+    signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    user = result.user;
+
+    window.location = "/home";
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
   }
   return (
     <button onClick={googleSignIn}>Sign In With Google</button>
@@ -69,6 +114,7 @@ function SignIn() {
 // }
 
 function App() {
+  console.log("app");
   return auth.currentUser && (<Router>
     <div className="App">
     <LoginNavigation />

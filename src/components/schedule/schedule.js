@@ -34,7 +34,7 @@ function Schedule() {
 
     function handleDeleteEvent() {
         allEvents.forEach(event => {
-            if(sameEvent) {
+            if(sameEvent(event, newEvent)) {
                 allEvents.splice(allEvents.indexOf(event), 1);
         }})
         setAllEvents([...allEvents])
@@ -42,7 +42,7 @@ function Schedule() {
 
     function sameEvent(x, y) {
         return(
-            x.title == y.title && x.start == y.start && x.end == y.end
+            x.title === y.title && x.start === y.start && x.end === y.end
         )
     }
 

@@ -7,6 +7,7 @@ import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
+import "./schedule.css"
 
 const locales = {
     "en-US": require("date-fns/locale/en-US"),
@@ -33,7 +34,7 @@ function Schedule() {
 
     function handleDeleteEvent() {
         allEvents.forEach(event => {
-            if(sameEvent) {
+            if(sameEvent(event, newEvent)) {
                 allEvents.splice(allEvents.indexOf(event), 1);
         }})
         setAllEvents([...allEvents])
@@ -41,7 +42,7 @@ function Schedule() {
 
     function sameEvent(x, y) {
         return(
-            x.title == y.title && x.start == y.start && x.end == y.end
+            x.title === y.title && x.start === y.start && x.end === y.end
         )
     }
 
@@ -50,7 +51,10 @@ function Schedule() {
             <h2>Add/Delete Event</h2>
             <div>
                 <input type="text" placeholder="Add Title" style={{ width: "20%", marginRight: "10px" }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
-                <DatePicker placeholderText="Start Date" style={{ marginRight: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
+                <DatePicker placeholderText="Start Date" 
+                    style={{ marginRight: "10px"}} 
+                    selected={newEvent.start} 
+                    onChange={(start) => setNewEvent({ ...newEvent, start })}/>
                 <DatePicker placeholderText="End Date" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
                 <button stlye={{ marginTop: "10px" }} onClick={handleAddEvent}>
                     Add Event

@@ -1,21 +1,20 @@
 import React, {useState} from "react";
 import "../messages/messages.css";
-import firebase from 'firebase';
-import 'firebase/firestore';
-
-import {useCollectionData } from 'react-firebase-hooks/firestore';
 
 function Messages() {
     const [data, setData] = useState(null);
     const [print, setPrint] = useState(false);
-
-    const firestore = firebase.firestore();
-    
+    let message = "";    
 
     function getData(val) {
-        setData(val.target.val)
+        setData(val.target.value)
         setPrint(false);
-        console.warn(val.target.val)
+        console.warn(val.target.value)
+    }
+
+    function updateText() {
+        message = data;
+        setPrint(true);
     }
 
     return(
@@ -23,15 +22,19 @@ function Messages() {
            {
                print?
                <div>
-                   <label>
+                   <label className="labelDisplay">
                        {data}
                    </label>
                </div>
-               :null
+               :             
+               <div>
+                   <label className="labelDisplay">
+                        {message}
+                   </label>
+               </div>
            }
-
            <input type="text" onChange={getData}></input>
-           <button onClick={() => setPrint(true)}>Send</button>
+           <button onClick={() => updateText()}>Send</button>
         </div>
     )
 }
